@@ -1,0 +1,14 @@
+# Sample configuration for rbroker.conf
+#
+# Default values are commented
+
+# Default debug level is 2 (ERROR).  Debug levels are:
+# 1: FATAL
+# 2: ERROR
+# 3: WARN
+# 4: INFO
+# 5: DEBUG
+#debug_level = 2
+
+# Daemonize, or run in foreground
+#daemonize = true
