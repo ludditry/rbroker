@@ -36,9 +36,15 @@ PKG_CHECK_MODULES([LIBCONFUSE], [libconfuse])
 AC_SUBST([LIBCONFUSE_CFLAGS])
 AC_SUBST([LIBCONFUSE_LIBS])
 
-PKG_CHECK_MODULES([LIBEV], [libev])
-AC_SUBST([LIBEV_CFLAGS])
-AC_SUBST([LIBEV_LIBS])
+# lol.  libev upstream doesn't believe in pkg-config
+# http://lists.schmorp.de/pipermail/libev/2013q1/002120.html
+# kind of... crazy.
+AC_CHECK_HEADERS([ev.h], [AC_CHECK_LIB([ev], [ev_io_start],, [have_libev=no])], [have_libev=no])
+AS_IF([test "x$have_libev" = "xno"], [AC_MSG_ERROR([libev not found])])
+
+dnl PKG_CHECK_MODULES([LIBEV], [libev])
+dnl AC_SUBST([LIBEV_CFLAGS])
+dnl AC_SUBST([LIBEV_LIBS])
 
 # For host type checks
 AC_CANONICAL_HOST
