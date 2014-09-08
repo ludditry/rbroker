@@ -18,6 +18,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+#include "platform.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <getopt.h>
@@ -33,14 +35,17 @@
 
 #include "main.h"
 #include "debug.h"
-#include "platform.h"
 
 #define DEFAULT_CONFIG_FILE "/etc/rbroker.conf"
 
 /* Config options */
 config_t config = {
     .debug_level = 0,
-    .daemonize = 1
+    .daemonize = 1,
+    .admin_backlog = 2,
+    .admin_socket = "@rpipes_admin",
+    .client_backlog = 5,
+    .node_backlog = 2
 };
 
 cfg_opt_t opts[] = {

@@ -18,26 +18,30 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef _MAIN_H_
-#define _MAIN_H_
 
-#include <confuse.h>
+#include "platform.h"
 
-typedef struct config_t {
-    int debug_level;
-    cfg_bool_t daemonize;
+#include <stdio.h>
 
-    /* admin socket tuning */
-    int admin_backlog;
-    char *admin_socket;
+#include "main.h"
+#include "debug.h"
 
-    /* client socket tuning */
-    int client_backlog;
+typedef struct control_client_t {
+} control_client_t;
 
-    /* node socket tuning */
-    int node_backlog;
-} config_t;
+typedef struct admin_client_t {
+} admin_client_t;
 
-extern config_t config;
+typedef struct node_client_t {
+} node_client_t;
 
-#endif /* _MAIN_H_ */
+static int create_admin_socket(char *path, int len) {
+    int fd;
+
+    fd = socket(AF_UNIX, SOCK_STREAM< 0);
+    if(fd == -1)
+        FATAL("cannot create admin socket: %s", strerror(errno));
+
+
+
+}

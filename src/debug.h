@@ -25,14 +25,16 @@
 #define DBG_INFO  3
 #define DBG_DEBUG 4
 
+#define X_EMIT(label, fmt, args...) debug_printf(label, fmt, ##args)
+
 #if defined(NDEBUG)
 #define DEBUG(format, args...)
 #define INFO(format, args...)
 #define WARN(format, args...)
-#define ERROR(format, args...) debug_printf(DBG_ERROR, "Error: " format "\n", ##args)
-#define FATAL(format, args...) debug_printf(DBG_FATAL, "Fatal: " format "\n", ##args)
+#define ERROR(format, args...) X_EMIT(DBG_ERROR, "Error: " format "\n", ##args)
+#define FATAL(format, args...) X_EMIT(DBG_FATAL, "Fatal: " format "\n", ##args)
 #else
-#define DEBUG(format, args...) debug_printf(DBG_DEBUG, "[DEBUG] %s:%d (%s): " format "\n", __FILE__, __LINE__, __FUNCTION__, ##args)
+#define DEBUG(format, args...) X_EMIT(DBG_DEBUG, "[DEBUG] %s:%d (%s): " format "\n", __FILE__, __LINE__, __FUNCTION__, ##args)
 #define INFO(format, args...) debug_printf(DBG_INFO, "[INFO] %s:%d (%s): " format "\n", __FILE__, __LINE__, __FUNCTION__, ##args)
 #define WARN(format, args...) debug_printf(DBG_WARN, "[WARN] %s:%d (%s): " format "\n", __FILE__, __LINE__, __FUNCTION__, ##args)
 #define ERROR(format, args...) debug_printf(DBG_ERROR, "[ERROR] %s:%d (%s): " format "\n", __FILE__, __LINE__, __FUNCTION__, ##args)

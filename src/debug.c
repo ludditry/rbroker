@@ -18,8 +18,10 @@
 
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
 
 #include "main.h"
+#include "debug.h"
 
 static int debug_threshold = 2;
 
@@ -36,4 +38,7 @@ void debug_printf(int level, char *format, ...) {
     va_start(args, format);
     vfprintf(stderr, format, args);
     va_end(args);
+
+    if(level == DBG_FATAL)
+        exit(1);
 }
