@@ -1,0 +1,8 @@
+#!/usr/bin/env python
+
+import socket
+
+admin_sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+admin_sock.connect('\0rpipes_admin')
+admin_sock.send("QUIT\n")
+admin_sock.close()

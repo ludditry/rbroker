@@ -35,6 +35,7 @@
 
 #include "main.h"
 #include "debug.h"
+#include "pipe.h"
 
 #define DEFAULT_CONFIG_FILE "/etc/rbroker.conf"
 
@@ -173,7 +174,7 @@ int main(int argc, char *argv[]) {
 
     /* do the actual daemon thing here */
     DEBUG("starting processing loop");
-
+    pipe_run();
 
     cfg_free(cfg);
     exit(res);

@@ -12,3 +12,18 @@
 
 # Daemonize, or run in foreground
 #daemonize = true
+
+## Admin socket tuning ##
+
+# backlogged accepts
+#admin_backlog = 5
+
+# AF_UNIX socket to listen to.  Start the socket with @ to
+# use abstract (file-less) namespace
+#admin_socket=@rpipes_admin
+
+## client socket tuning ##
+# client_backlog = 5
+
+## node socket tuning ##
+# node_backlog = 2
